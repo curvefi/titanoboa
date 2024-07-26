@@ -1,5 +1,3 @@
-import re
-
 import pytest
 import yaml
 from eth.constants import ZERO_ADDRESS
@@ -10,9 +8,9 @@ from boa.contracts.abi.abi_contract import ABIContractFactory, ABIFunction
 from boa.util.abi import Address
 
 
-def load_via_abi(code):
+def load_via_abi(code, name="test contract"):
     contract = boa.loads(code)
-    factory = ABIContractFactory.from_abi_dict(contract.abi)
+    factory = ABIContractFactory.from_abi_dict(contract.abi, name)
     return factory.at(contract.address), contract
 
 
@@ -167,11 +165,12 @@ def test(n: uint256) -> uint256:
     assert n > 0
     return 0
 """
-    c, _ = load_via_abi(code)
+    c, _ = load_via_abi(code, "revert test")
     with pytest.raises(BoaError) as exc_info:
         c.test(0)
-    ((error,),) = exc_info.value.args
-    assert re.match(r"^ +\(.*\.test\(uint256\) -> \['uint256']\)$", error)
+    frame = exc_info.value.args[0].last_frame
+    assert frame.error_detail == "(test(uint256) -> ['uint256'])"
+    assert frame.contract_repr.startswith("<revert test interface at")
 
     with pytest.raises(Exception) as exc_info:
         c.test(1, 2)
@@ -200,7 +199,8 @@ def test(n: uint256) -> uint256:
     with pytest.raises(BoaError) as exc_info:
         abi_contract.test(0)
     ((error,),) = exc_info.value.args
-    assert re.match(r"^ +\(unknown method id .*\.0x29e99f07\)$", error)
+    assert error.error_detail == "(unknown method 0x29e99f07)"
+    assert error.contract_repr.startswith("<test contract interface at ")
 
 
 def test_prepare_calldata():
@@ -238,6 +238,7 @@ def test_abi_invalid_components():
 
     assert "Components found in non-tuple type uint256" == str(exc_info.value)
 
+
 def test_abi_factory_multi_deploy():
     code = """
 foo: public(uint256)
@@ -255,4 +256,3 @@ def __init__(x: uint256):
 
     assert wrapper.foo() == 5
     assert wrapper2.foo() == 6
-
