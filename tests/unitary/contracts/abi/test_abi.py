@@ -99,8 +99,8 @@ struct Test:
 @view
 def test(_a: DynArray[uint256, 100]) -> ((DynArray[Test, 2], uint256), uint256):
     first: DynArray[Test, 2] = [
-        Test({address: msg.sender, number: _a[0]}),
-        Test({address: msg.sender, number: _a[1]}),
+        Test(address=msg.sender, number=_a[0]),
+        Test(address=msg.sender, number=_a[1]),
     ]
     return (first, _a[2]), _a[3]
     """
@@ -238,11 +238,12 @@ def test_abi_invalid_components():
 
     assert "Components found in non-tuple type uint256" == str(exc_info.value)
 
+
 def test_abi_factory_multi_deploy():
     code = """
 foo: public(uint256)
 
-@external
+@deploy
 def __init__(x: uint256):
     self.foo = x
     """
@@ -255,4 +256,3 @@ def __init__(x: uint256):
 
     assert wrapper.foo() == 5
     assert wrapper2.foo() == 6
-
