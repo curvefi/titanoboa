@@ -1,12 +1,12 @@
 [project]
-name = "titanoboa"
-version = "0.1.10b1"
+name = "curve-boa"
+version = "0.1.10.0"
 description = "A Vyper interpreter"
 #authors = []
 license = { file = "LICENSE" }
 readme = "README.md"
-#homepage = "https://github.com/vyperlang/titanoboa"
-#repository = "https://github.com/vyperlang/titanoboa"
+#homepage = "https://github.com/curvefi/titanoboa"
+#repository = "https://github.com/curvefi/titanoboa"
 #documentation =
 
 keywords = ["ethereum", "evm", "smart contract", "development"]

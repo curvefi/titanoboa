@@ -39,7 +39,7 @@ Follow the steps to clone the repo for you to make changes to this project.
 1. Clone the repo
 
 ```bash
-git clone https://github.com/vyperlang/titanoboa
+git clone https://github.com/curvefi/titanoboa
 cd titanoboa
 ```
 

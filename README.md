@@ -1,4 +1,7 @@
-# Titanoboa
+# Curve-boa
+
+This is a fork of the [Titanoboa](https://github.com/vyperlang/titanoboa) interpreter, specifically for the needs of Curve Finance.
+In this fork we experiment with adding new features before they are merged into the main repository.
 
 A [Vyper](https://github.com/vyperlang/vyper) interpreter with pretty tracebacks, forking, debugging features and more! Titanoboa's goal is to provide a modern, advanced and integrated development experience for vyper users.
 
@@ -12,12 +15,12 @@ Usage and quickstart are [below](#usage-quick-start). For more detailed document
 
 ## Installation
 ```
-pip install titanoboa
+pip install curve-boa
 ```
 
 For latest dev version:
 ```
-pip install git+https://github.com/vyperlang/titanoboa
+pip install git+https://github.com/curvefi/titanoboa
 ```
 
 
@@ -25,12 +28,12 @@ If you are installing titanoboa from git alongside brownie, you may have to manu
 
 ```
 pip install brownie
-pip install git+https://github.com/vyperlang/titanoboa
+pip install git+https://github.com/curvefi/titanoboa
 ```
 
 Sometimes, using [pypy](https://www.pypy.org/download.html) can result in a substantial performance improvement for computation heavy contracts. `Pypy` can usually be used as a drop-in replacement for `CPython`.
 
-To get a performance boost for mainnet forking, install with the `forking-recommended` extra (`pip install "git+https://github.com/vyperlang/titanoboa#egg=titanoboa[forking-recommended]"`, or `pip install titanoboa[forking-recommended]`). This installs `plyvel` to cache RPC results between sessions, and `ujson` which improves json performance.
+To get a performance boost for mainnet forking, install with the `forking-recommended` extra (`pip install "git+https://github.com/curvefi/titanoboa#egg=titanoboa[forking-recommended]"`, or `pip install curve-boa[forking-recommended]`). This installs `plyvel` to cache RPC results between sessions, and `ujson` which improves json performance.
 
 If you are running titanoboa on a local [Vyper](https://github.com/vyperlang/vyper) project folder, you might need to run `python setup.py install` on your [Vyper](https://github.com/vyperlang/vyper) project if you encounter errors such as `ModuleNotFoundError: No module named 'vyper.version'`
 
@@ -222,7 +225,7 @@ Before being able to use the plugin, you need to install it.
 You can do this by running the following command in the terminal:
 
 ```bash
-pip install titanoboa
+pip install curve-boa
 jupyter lab extension enable boa
 ```
 To activate our IPython extension, you need to run the following command in the notebook:
@@ -243,7 +246,7 @@ The source code for this website is available in the [GitHub repository](https:/
 It is also possible to run our plugin in [Google Colab](https://colab.research.google.com/).
 To do this, you need to install the plugin by running the following commands:
 ```jupyter
-!pip install titanoboa
+!pip install curve-boa
 %load_ext boa.ipython
 ```
 

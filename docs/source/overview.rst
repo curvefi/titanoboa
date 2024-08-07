@@ -18,13 +18,13 @@ Installation
 
 .. code-block:: bash
 
-   pip install titanoboa
+   pip install curve-boa
 
-Alternatively, the latest in-development version of ``titanoboa`` can be installed from `GitHub <https://github.com/vyperlang/titanoboa>`_.
+Alternatively, the latest in-development version of ``titanoboa`` can be installed from `GitHub <https://github.com/curvefi/titanoboa>`_.
 
 .. code-block:: bash
 
-   pip install git+https://github.com/vyperlang/titanoboa#egg=titanoboa
+   pip install git+https://github.com/curvefi/titanoboa#egg=titanoboa
 
 If you are using `Poetry <https://python-poetry.org/>`_ as a dependency manager:
 
@@ -37,4 +37,4 @@ If you want to use a specific version you can customize the dependency in your `
 .. code-block:: toml
 
    [tool.poetry.dependencies]
-   titanoboa = { git = "https://github.com/vyperlang/titanoboa.git", rev = <commit hash> }
+   titanoboa = { git = "https://github.com/curvefi/titanoboa.git", rev = <commit hash> }
