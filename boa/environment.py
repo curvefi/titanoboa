@@ -314,6 +314,10 @@ class Env:
             child_contract = self._lookup_contract_fast(child.msg.code_address)
             self._hook_trace_computation(child, child_contract)
 
+    @property
+    def state(self):
+        return self.evm.state
+
     def get_code(self, address: _AddressType) -> bytes:
         return self.evm.get_code(Address(address))
 
